@@ -58,6 +58,11 @@ def handle_request():
                      to=request.form['From'])
     return json_response( status = "ok" )
 
+#First message for player
+# "You have been tasked to save our land from Alder Black. Please take these items as our token of gratitude. In there you will find armor(+10 health), 1 broad sword(+2 sharpness) and 10 additional gold. The final enemy is 10 miles north of here and you are sure to encounter large beasts, difficult terrain, and other travellers. Would you like to purchase anything from our shop before embarking on your adventure?"
+
+
+
 
 
 
