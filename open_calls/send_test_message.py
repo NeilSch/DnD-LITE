@@ -9,7 +9,7 @@ with open('config.yml', 'r') as yml_file:
 
 def handle_request():
     message = g.sms_client.messages.create(
-                     body="Join Earth's mightiest heroes. Like Kevin Bacon.",
+                     body="Welcome new traveller!",
                      from_=yml_configs['twillio']['phone_number'],
                      to='+18584423590'
                  )
