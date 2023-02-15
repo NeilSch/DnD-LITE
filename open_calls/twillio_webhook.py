@@ -64,6 +64,20 @@ def handle_request():
 #After shop encounter
 # "We will pray for your safety and victory great hero!" 
 
+#First encounter
+# message = "Oh no, a wild Goblin has appeared! What would you like to do? (Please respond with ATTACK, PERSUADE, or HEAL)"
+#if (response == "ATTACK")
+#       player_attack = randint(1,20)
+#       player_attack += weapon_sharpness
+#       goblin_attack = randint(1,20)
+#       if (player_attack >= goblin_attack):
+#           message = "The goblin has fainted! You are now able to continue forward on your journey."
+#       else:   
+#           goblin_damage = randint(1,3)
+#           message = "The goblin has done" + goblin_damage + "! What would you like to do? (Please respond with ATTACK, PERSUADE, or HEAL)"
+#           player_health -= goblin_damage
+
+
 
 
 
