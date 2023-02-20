@@ -4,7 +4,7 @@ import json
 
 
 MY_GAME_LOGIC = {}
-with open('college_trail.json', 'r') as myfile:
+with open('rpg.json', 'r') as myfile:
     MY_GAME_LOGIC = json.loads(myfile.read())
 
 class player(actor):
