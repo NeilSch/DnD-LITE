@@ -5,7 +5,3 @@ chatbot:
         name: "DnD DM"
 twillio:
         phone_number: "+18583303617"
-
-
-#chatbot:
-        #name: "Bianca Del Rio"
