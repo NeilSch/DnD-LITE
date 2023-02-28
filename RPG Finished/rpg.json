@@ -1,0 +1,442 @@
+{
+        "init" : {
+                        "content": "Come one, come all! Welcome to Dungeons n Dragons, SMS Edition! You will act during the game through one word messages.",
+                        "next_state": "init2"
+                },
+        "init2": {
+                "content": "Merchant: Hello! I need a warrior to acquire a rare item that was said to have belonged to a great dragon, who lives at the top of the mountain. Of course, I will reward you handsomely for the return of that item.",
+                "next_state": "choose"
+        },
+        "choose" : {
+                        "content" : "Will you assist this humble merchant?” (Reply YES or NO)",
+                        "next_state" : [
+                                         {
+                                                 "input" : "YES",
+                                                 "next_state" : "MerchantTutorial",
+						 "point_delta" : 5
+                                        },
+                                        {
+                                                 "input" : "NO",
+                                                 "next_state" : "end_adv",
+						 "point_delta" : -5
+                                        }
+			]
+},
+
+
+        "MerchantTutorial": {
+                        "content" : "Merchant: Thank you Warrior! I know of your greatness, but allow me to give you a quick refresher on how to fight! First, I will conjure a goblin.",
+                        "next_state" : "GoblinT1"
+                },
+        "GoblinT1"  : {
+                        "content" : "Merchant: Now, we are in battle against a goblin. However healthy the goblin is is irrelevant. All you need to do is hit it. Now, Attack! (Reply with ATTACK or FLIRT)",
+                        "next_state": [
+                                        {
+                                                "input" : "ATTACK",
+                                                "next_state" : "TutorialAttack"
+                                        },
+					{
+						"input" : "FLIRT",
+						"next_state" : "TutorialFlirt"
+					}
+                                      ]
+                },
+	"TutorialAttack" : {
+		"content" : "You grab the goblin by the neck with both hands until its little body goes limp. Brutal!",
+		"next_state" : "GoblinT2",
+		"point_delta" : 5
+},
+	"TutorialFlirt" : {
+		"content" : "You whisper sweet nothings into the goblin's ear. The goblin, in its confusion, kills itself.",
+		"next_state" : "GoblinT2",
+		"point_delta" : 10
+},
+        "GoblinT2"  : {
+                        "content" : "Merchant: You did it! Now I can fully place my trust in you. Now go, try to find out who may have taken my wares. But be careful, your death is not an impossibility, given the enemies you will encounter...",
+                        "next_state" : "decision"
+                },
+	"decision" : {
+			"content" : "After a brief walk, you find a split in the road before you. One path leads through a dense forest area while another leads around it. Which will you take, traveller? (FOREST or AROUND)",
+			"next_state": [
+					{
+						"input" : "FOREST",
+						"next_state" : "scenario1"
+					},
+					{
+						"input" : "AROUND",
+						"next_state" : "scenario2"
+					}
+			]
+	},
+	"scenario1" : {
+			"content" : "Recognizing that the dragon is located opposite the forest, you recognize that it is the shortest path and march on. As you continue, you take a moment to take in the atmosphere of this place. The forest is beautiful, and all of its creatures are living in harmony. You continue forwards.",
+			"next_state" : "scenario1_cont"
+	},
+	"scenario1_cont": {
+			"content": "After getting deeper into the forest, you are surprised by a bear! (ATTACK or EVADE)",
+			"next_state": [
+				{
+						"input": "ATTACK",
+						"next_state": "scenario1_attack",
+						"point_delta": -5
+				},
+				{
+						"input": "EVADE",
+						"next_state": "scenario1_evade",
+						"point_delta": 5
+
+				}
+			]
+	},
+        "scenario1_attack": {
+			"content" : "You have attacked. Unfortunately, the bear manages to land a lucky hit, scratching you in the chest with its claws before running away.", 
+			"next_state" : "scenario1bc_pre",
+			"point_delta" : -5
+	},
+	"scenario1_evade": {
+			"content": "You have chosen to run away from the bear! Recognizing that you have no weapon at this time, you manage to scamper up the nearest tree. The bear looks up at you and begins to climb, but then decides against it as it spotted a far easier meal in the distance. It leaves you alone, for now.",
+			"next_state" :	"scenario1ac_pre"
+
+	},
+	"scenario1bc_pre" : {
+		"content" : "Recovering from your grizzly wound, you march forth deeper into the forest. As you walk, you notice the roof of the forest getting thicker, blocking out more of the available light. You notice mushrooms growing around the forest floor now.",
+		"next_state" : "scenario1bc"
+	},
+	"scenario1bc" : {
+			"content": "As you continue walking through the darker part of the forest, you see a small hut with a large cauldron in front of it. As you approach, you are greeted by a myserious witch who offers you a sword and health in exchange for all your worldly posessions. (ATTACK or DEAL or FLIRT)",
+			"next_state" : [
+				{
+					"input" : "ATTACK",
+					"next_state" : "scenario1bc_attack",
+					"point_delta" : -10
+				},
+				{
+					"input" : "DEAL",
+					"next_state" : "scenario1bc_deal",
+					"point_delta" : 5
+				},
+				{
+					"input" : "FLIRT",
+					"next_state" : "scenario1bc_flirt",
+					"point_delta" : 5
+				}
+		]
+	},
+	"scenario1ac_pre" : {
+		"content" : "Shaking in your boots as you watch the bear leave you alone, you let out a sigh. You start climbing down the tree slowly. However, during your descent, you notice a glint of something metallic in the bushes.",
+		"next_state" : "scenario1ac"
+	},
+	"scenario1ac" : {
+			"content" : "Reaching the forest floor, you go to investigate the bushes. Pulling them apart, you notice a small cave entrance hidden behind them! The metallic glint appears to be a shard of something larger. Will you leave and continue on the forest path or explore the cave? (PATH or CAVE)",
+			"next_state" : [
+				{
+					"input" : "PATH",
+                    "next_state" : "scenario11ac",
+                    "point_delta" : 5
+				},
+				{
+					"input" : "CAVE",
+                    "next_state" : "scenario12ac",
+                    "point_delta" : 5
+				}
+			]
+	},
+	"scenario11ac" : {
+		"content" : "You decide to return to the forest path. The path is well-trodden; it would be very difficult to mistake it for going somewhere else. You follow it closely.",
+		"next_state" : "scenarioPathAfterEvade"
+	},
+	"scenarioPathAfterEvade" : {
+		"content" : "Continuing down this well-trodden path, you find it strange that you didn't see this path before. It appears perfect, as if it's tempting people to walk down it. As you continue, you are suddenly assaulted by long vines that grow from the edges of the path! They quickly overwhelm you before you can resist, and you die shortly thereafter.",
+		"next_state" : "death"
+	},
+	"scenario12ac" : {
+		"content" : "You decide to enter the cave. The cave appears totally dark as you wait for your eyes to adjust. After a short time, your eyes have adjusted, and you can make out a glimmering light further along in the cave. You decide to check it out.",
+		"next_state" : "scenarioCave"
+	},
+	"scenarioCave" : {
+		"content" : "You approach the light carefully. As you approach, you hear the noise of torches hanging on the wall. As you finally reach the light, you can finally see what has been hidden in the cave.",
+		"next_state" : "scenarioCave2"
+	},
+	"scenarioCave2" : {
+		"content" : "In the light of magical torches, you see the remains of a grand throne room. Everything looks ancient, with the carpets faded in color and plants growing around it all. In the center of it all, you see a ruined throne. The remains of what you assume to be a king (given the crown on his head) lay in a seated position. You enter the throne room.",
+		"next_state" : "scenarioCave3"
+	},
+	"scenarioCave3" : {
+		"content" : "Immediately, you get an uneasy feeling. Even the air feels oppressive standing in the throne room. Do you give into the feeling, and run away? Or do you continue forward? (RUN or CONTINUE)",
+		"next_state" : [
+			{
+				"input" : "RUN",
+				"next_state" : "scenarioCaveRun",
+				"point_delta" : -10
+			},
+			{
+				"input" : "CONTINUE",
+				"next_state" : "caveEncounter",
+				"point_delta" : 5
+			}
+		]
+	},
+	"scenarioCaveRun" : {
+		"content" : "Giving into your fear, you run away. You can see the cave entrance in the distance, the light shining brightly. Suddenly, you feel something hit your back. You fall down, groaning in pain. As you start to get back up, you feel yourself start to get weaker and weaker. You take a look at your hands, which have now become skeletal. Your vision starts fading. The last thing you see before your demise is the skeletal king standing in front you, eyes alight with fire.",
+		"next_state" : "death"
+	},
+	"caveEncounter" : {
+		"content" : "You resist the feeling, and continue towards the throne. As you approach, the skeleton on the throne stirs, its eyes beginning to glow in an eerie purple flame. The skeleton speaks to you.",
+		"next_state" : "caveEncounter2"
+	},
+	"caveEncounter2" : {
+		"content" : "Skeleton: Ah yes... An interloper... It has been quite a few centuries since the last one came... Well then, interloper... I know what you seek... You seek power... Power enough to accomplish your goals, correct...?",
+		"next_state" : "caveEncounter3"
+	},
+	"caveEncounter3" : {
+		"content" : "You must gather your wits and respond quickly. You have the feeling that if you act incorrectly, it would lead to your death faster than you could blink. Answer (YES, NO), or (FIGHT)",
+		"next_state" : [
+			{
+				"input" : "YES",
+				"next_state" : "power1",
+				"point_delta" : 20
+			},
+			{
+				"input" : "NO",
+				"next_state" : "caveDisappointment",
+				"point_delta" : -10
+			},
+			{
+				"input" : "FIGHT",
+				"next_state" : "caveDeath",
+				"point_delta" : -20
+			}
+		]
+	},
+	"caveDeath" : {
+		"content" : "The moment you begin to tense up, preparing yourself to fight, you find that skeleton is holding a heart in its hand. It crushes the heart, and you understand. It was yours. You die immediately.",
+		"next_state" : "death"
+	},
+	"caveDisappointment" : {
+		"content" : "Skeleton: How disapointing... Well, interloper... Since you've made no attempt at theft, and no foolish attempt to fight, I shall allow you to leave... However, should you ever return... I will consume your soul...",
+		"next_state" : "caveDisappointment2"
+	},
+	"caveDisappointment2" : {
+		"content" : "You immediately thank the skeleton, and turn to leave. You exit the cave after sweating in fear the whole way there. You make it out of the cave, and collapse. When you wake up, you immediately discover a path up to the mountain of the dragon.",
+		"next_state" : "noGearMountain"
+	},
+	"noGearMountain" : {
+		"content" : "You hurry to the mountain path you spotted. Thinking back, you realize that you never really accomplished anything. While this path leads to the dragon, you're not really sure if you're going to be able to do anything against it.",
+		"next_state" : "boss_cc"
+	},
+	"power1" : {
+		"content" : "Skeleton: Good... Know that you have made the correct choice... I am a lich, a king among undead... With my necromantic abilities, I will raise you as a powerful undead, with necromantic abilities of your own... Let us begin... (Hearing this, you black out)",
+		"next_state" : "power2"
+	},
+	"power2" : {
+		"content" : "You see a light, a great bright light. You start trying to approach it, but are pulled back. You see Death itself behind you, pulling at... your soul! You realize you have some power here, though. If you use everything you have, you'll be free. However, your story will end there. (RESIST or SUCCUMB)",
+		"next_state" : [
+			{
+				"input":"RESIST",
+				"next_state" : "goIntoTheLight",
+				"point_delta" : 5
+			},
+			{
+				"input" : "SUCCUMB",
+				"next_state" : "power3"
+			}
+		]
+	},
+	"power3" : {
+		"content" : "When you awaken, you feel... different. Powerful. You raise one of your hands to look at it, and find that your skin is patchy and a dark green, bits of your bone visible through the holes. You quickly realize that your Master, the Lich, is watching you.",
+		"next_state" : "power4"
+	},
+	"power4" : {
+		"content" : "Lich: Good... I see you have kept your wits... Few ever do... (The lich laughs.) Now... Accomplish that which you wished to do... Know that you are now a god amongst men, not requiring food nor rest... Your strength has been multiplied as well... Now go, and return to me after...",
+		"next_state" : "undeadMountain"
+	},
+	"goIntoTheLight" : {
+		"content" : "You resist the power of Death and manage to finally go into the light. While not having accomplished much, you resisted turning to the dark in your quest. Your vision turns bright white...",
+		"next_state" : "death"
+	},
+	"undeadMountain" : {
+		"content" : "As your Master allowed, you exit the cave. In the distance, you see the path up to the mountain of the Dragon. You approach, and journey up the mountain.",
+		"next_state" : "undeadBossFight"
+	},
+
+   	"scenario1bc_attack": {
+                        "content" : "You attack the witch, who immediately shoots a ray of necrotic energy at you, aging you significantly. You did get a good punch in her face, though, which may or may not make up for the fact that YOU ARE ON THE VERGE OF DEATH.",
+                        "next_state" : "scenario11cc",
+                        "point_delta" : -5
+        },
+   	"scenario1bc_deal": {
+                        "content" : "It cost you everything, all of your possessions, but the witch honored her end of the deal. She gives you a steel blade and cures you of your ailments.",
+                        "next_state" : "scenario12ab",
+                        "point_delta" : 10
+        },
+   	"scenario1bc_flirt": {
+                        "content" : "You channel your inner suave to woo this forest babe. She looks homeless, but you certainly have done worse. She is swept off her feet, saying how she hasn't been flirted with in years. She gives you the sword, free of charge!",
+                        "next_state" : "scenario13bb",
+                        "point_delta" : 5
+        },
+   	"scenario11cc" : {
+                        "content" : "After getting mauled by a bear and blasted by a witch, you feel as though you aren't long for this world. Take a nap, soldier. It was a good run.",
+                        "next_state" : "death",
+                        "point_delta" : -5
+        },
+	"scenario12ab" : {
+		"content" : "You march forward into mountains, ready to confront the dragon!",
+		"next_state" : "boss_ab"
+	},
+	"scenario13bb" : {
+		"content" : "You find yourself before the dragon, moderately prepared and ready to fight it. Be ready!",
+		"next_state" : "boss_ac"
+	},
+	"scenario2": {
+			"content": "You have decided that the path through the forest may be too dangerous and decide to go around the forest.",
+			"next_state": "scenario2_1"	
+	},
+	"scenario2_1": 
+		{
+			"content": "There is a ravine ahead of the path and you must jump across it. However, you have hurt your leg after landing",
+			"next_state": "scenario2_2bc",
+			"point_delta": -3
+		},
+	"scenario2_2bc": 
+		{
+			"content": "While traversing the path, there seems to be bandits attacking a local village! Will you help the villagers or continue on your journey? (Reply ASSIST or LEAVE)",
+			"next_state":
+				[
+					{
+						"input": "ASSIST",
+						"next_state": "scenario2_2aa",
+						"point_delta": 0
+					},
+					{
+						"input": "LEAVE",
+						"next_state": "scenario2_2cc",
+						"point_delta": 0
+					}
+				]
+		},
+
+	"scenario2_2aa":
+		{
+			"content": "After fighting off the bandits alongside the villagers, they are grateful for your heroism healing your wounds and gifting you the legendary weapon Excalibur",
+			"next_state": "scenario2_3ab",
+			"point_delta": 15
+		},
+	"scenario2_2cc":
+		{
+			"content": "Deciding that your mission is more important than the lives of others, you move forward. Unfortuantely, the bandits notice this and attack you as well, leaving you gravely wounded. ",
+			"next_state": "scenario2_3cc",
+			"point_delta": -10
+
+		},
+	"scenario2_3ab":
+		{
+			"content": "Now with healed wounds and a new weapon, you have been guided to the bottom of the mountain and are ready to defeat the dragon. However, a woman in a dark cloak is waiting there and offers you greater chance of defeating the dragon. Do you accept her offer? (Reply YES or NO)",
+			"next_state": 
+			[
+				{
+					"input": "YES",
+					"next_state": "scenario2_4aa",
+					"point_delta": 0
+				},
+				{
+					"input": "NO",
+					"next_state": "scenario2_4ab",
+					"point_delta": 0
+				}
+			]
+		},
+	"scenario2_3cc":
+		{
+			"content": "After suffering grave wounds and reaching the bottom of the mountain, the final obstacle is to climb the mountain in order to meet the dragon. However, a woman in a dark cloak is waiting ther and offers you a greater chance of victory. Do you accept her offer? (Reply YES or NO)",
+			"next_state": 
+			[
+				{
+					"input": "YES",
+					"next_state": "scenario2_4ac",
+					"point_delta": 0
+				},
+				{
+					"input": "NO",
+					"next_state": "scenario2_4cc",
+					"point_delta": 0
+				}
+			]			
+		},
+	"scenario2_4aa":
+		{
+			"content": "Trusting this woman has embued your weapon with magical properties. And you are ready to slay the dragon!",
+			"next_state": "boss_aa",
+			"point_delta": 5
+		},
+	"scenario2_4ab":
+		{
+			"content": "You are confident in your skills and decide to decline this woman's offer. And you are ready to slay the dragon!",
+			"next_state": "boss_ab",
+			"point_delta": 0
+		},
+	"scenario2_4ac":
+		{
+			"content": "With nothing left to lose, you trust this woman and your body starts to feel lighter with your wounds fading! And you are ready to slay the dragon!",
+			"next_state": "boss_ac",
+			"point_delta": 5 
+		},
+	"scenario2_4cc":
+		{
+			"content": "Shoving her aside, you decide that you are strong enough on your own. And you are ready to slay the dragon!",
+			"next_state": "boss_cb",
+			"point_delta": -5
+		},
+	"boss_aa":
+                {
+                        "content": "Healthy and with an enhanced weapon, you confront the dragon under the best possible terms! That battle is long, but you manage to slay the dragon and save the land!",
+                        "next_state": "win",
+                        "point_delta": 100
+                },
+	"boss_ab":
+                {
+                        "content": "Your adventure has made you strong. You confront the dragon with weapon in hand. The battle is long, and you sustain many injuries, but you manage to smite the dragon and make it out alive!",
+                        "next_state": "win",
+                        "point_delta": 50
+                },
+	"boss_ac":
+                {
+                        "content": "With your life on the line, you deem the dragon too great a evil to leave alive. After a long fought battle, you and the dragon kill each other in a fight to the death.",
+                        "next_state": "win",
+                        "point_delta": 25
+                },
+	"boss_cb":
+                {
+                        "content": "Approaching the dragon on the verge of death, it makes quick work of you, torching you into smithereens.",
+                        "next_state": "death",
+                        "point_delta": 0
+                },
+	"boss_cc":
+                {
+                        "content": "You approach the dragon. Throughout your journey, you accomplished nothing, and gained nothing. The dragon quickly moves in for the kill, and you perish not having been able to fight back.",
+                        "next_state": "death",
+                        "point_delta": -5
+                },
+	"undeadBossFight" : {
+		"content" : "In the distance, you see the dragon. It never sensed your approach as its home is saturated in the scent of death, that which now adorns you. You approach the sleeping dragon, and with one blow you pulverize its skull, killing it.",
+		"next_state": "undeadEpilogue",
+		"point_delta" : 100
+	},
+	"undeadEpilogue" : {
+		"content" : "After accomplishing your goal, you return the cave where your Master resides, never to return to the Merchant as your journey ends.",
+		"next_state" : "win"
+	},
+	"end_adv" : {
+                                "content": "Merchant: Well then, Warrior, I'll look for another Guild member to assist me. Thank you!",
+                                "next_state" : "death"
+                },
+	"win":
+                {
+                        "content": "You won! Thank you for playing!",
+                        "next_state": "init"
+                },
+        "death" : {
+                        "content" : "GAME OVER.",
+                        "next_state": "init"
+                }
+
+}
